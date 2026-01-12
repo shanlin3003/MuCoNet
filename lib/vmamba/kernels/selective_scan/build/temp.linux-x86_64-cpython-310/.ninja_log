@@ -1,0 +1,7 @@
+# ninja log v5
+5	18703	1737000403445818774	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_fwd.o	b65579f94a6aee06
+1	30178	1737000414905379881	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan.o	531fe055484cb224
+2	41797	1737000426528934682	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_bwd.o	e9176703acf15a4c
+27	25919	1737000453439903860	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_core_fwd.o	e2c51fe730d17993
+36	31275	1737000458783699151	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_oflex.o	f30616e24e85099f
+19	65663	1737000493178381452	/home/featurize/work/.ssh/PGCF/lib/vmamba/kernels/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_core_bwd.o	b0412c9a407adfde
