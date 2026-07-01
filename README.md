@@ -25,12 +25,12 @@ This repository provides training, inference, and evaluation code for **MuCoNet*
 
 ## Requirements
 
-- Linux with NVIDIA GPU (paper experiments used **RTX 3090**; 2 GPUs recommended)
+- Linux with NVIDIA GPU
 - **Python 3.10**
-- **CUDA 11.8+** (compatible with PyTorch 2.1.1)
+- **CUDA 11.8+**
 - **PyTorch 2.1.1**, **torchvision 0.16.1**
 - **mamba-ssm 1.2.0.post1**, **causal-conv1d 1.1.1**
-- **mmcv >= 2.0.0** (used by `ConvModule` in the decoder)
+- **mmcv >= 2.0.0**
 
 ---
 
