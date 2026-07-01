@@ -140,6 +140,7 @@ def train(train_loader, model, optimizer, epoch, test_path):
 
     if epoch % 1 == 0:
         dataset1 = ['CVC-300', 'CVC-ClinicDB', 'Kvasir', 'CVC-ColonDB', 'ETIS-LaribPolypDB']
+        torch.cuda.empty_cache()  # free training memory before evaluation
 
         for j in range(0, 5):
             dataset = dataset1[j]
@@ -149,15 +150,15 @@ def train(train_loader, model, optimizer, epoch, test_path):
             if dataset_dice > best_dice[j] and dataset_iou > best_iou[j]:
                 best_dice[j] = dataset_dice
                 best_iou[j] = dataset_iou
-                torch.save(model.state_dict(),
+                torch.save(model.module.state_dict(),
                            save_path + 'train_doublebest_' + dataset + '.pth')
             elif dataset_iou > best_iou[j]:
                 best_iou[j] = dataset_iou
-                torch.save(model.state_dict(),
+                torch.save(model.module.state_dict(),
                            save_path + 'train_best_iou_' + dataset + '.pth')
             elif dataset_dice > best_dice[j]:
                 best_dice[j] = dataset_dice
-                torch.save(model.state_dict(),
+                torch.save(model.module.state_dict(),
                            save_path + 'train_best_dice_' + dataset + '.pth')
             data_str = f"\tbest_dice:{best_dice[j]} - best_iou:{best_iou[j]}\n"
             print_and_save(train_log_path, data_str)
@@ -193,7 +194,7 @@ if __name__ == '__main__':
                         default=False, help='choose to do random flip rotation')
 
     parser.add_argument('--batchsize', type=int,
-                        default=24, help='training batch size')
+                        default=16, help='training batch size')
     
     parser.add_argument('--weight_decay', type=int,
                         default=1e-4, help='weight decay')
@@ -216,7 +217,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--test_path', type=str,
                         default='./data/TestDataset',
-                        help='path to testing Kvasir dataset')
+                        help='path to test datasets root')
 
     parser.add_argument('--train_save', type=str,
                         default='./data/checkpoint/')
@@ -225,8 +226,9 @@ if __name__ == '__main__':
 
 
     # ---- build models ----
-    model = Model().to(device_ids[0])
-
+    model = Model()
+    model = nn.DataParallel(model, device_ids=device_ids)
+    model.to(device_ids[0])
 
     best_dice = [0, 0, 0, 0, 0]
     best_iou = [0, 0, 0, 0, 0]
@@ -243,11 +245,11 @@ if __name__ == '__main__':
 
     create_dir("logs")
     """ Training logfile """
-    train_log_path = "./logs/train_logger.txt"
+    train_log_path = os.path.join("logs", "train_logger.txt")
     if os.path.exists(train_log_path):
         print("Log file exists")
     else:
-        train_log = open("logs/train_log.txt", "w")
+        train_log = open(os.path.join("logs", "train_log.txt"), "w")
         train_log.write("\n")
         train_log.close()
 

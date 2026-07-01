@@ -1,12 +1,25 @@
-# pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118
 mmengine
+mmcv>=2.0.0
 thop
 albumentations
 timm
 einops
 opencv-python
+Pillow
+PyYAML
+easydict
+tabulate
+tqdm
+scipy
+
+# PyTorch (CUDA 11.8 example; adjust for your driver)
+# pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118
 torch==2.1.1
 torchvision==0.16.1
 torchaudio==2.1.1
+
+# Mamba dependencies (install after PyTorch)
+# pip install causal_conv1d==1.1.1
+# pip install mamba-ssm==1.2.0.post1
 causal_conv1d==1.1.1
 mamba-ssm==1.2.0.post1
